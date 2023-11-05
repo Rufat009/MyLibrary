@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Library 2.jfif" />
+    <None Remove="Library.jfif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Library 2.jfif" />
+    <Resource Include="Library.jfif" />
+  </ItemGroup>
+
+</Project>
