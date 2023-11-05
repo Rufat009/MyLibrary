@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
 
@@ -11,7 +13,7 @@ public static class BookRepo
 {
 
     
-    private static List<Book> books = new List<Book>();
+    private static List<Book> books = JsonSerializer.Deserialize<List<Book>>(File.ReadAllText("Books.json")) ?? new List<Book>();
 
     public static List<Book> Show()
     {

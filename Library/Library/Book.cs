@@ -4,6 +4,7 @@ using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Automation;
 
 namespace Library;
 
@@ -20,4 +21,8 @@ public class Book
         this.Author = author;
     }
 
+    public override string ToString()
+    {
+        return $"Title: {Title} Author: {Author}";
+    }
 }

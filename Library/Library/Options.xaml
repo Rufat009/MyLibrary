@@ -7,13 +7,27 @@
         mc:Ignorable="d"
         Title="Options" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="277*"/>
+            <RowDefinition Height="157*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="195*"/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="171*"/>
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Library 2.jfif"/>
         </Grid.Background>
-        <Button Content="Show Books" HorizontalAlignment="Left" Margin="140,85,0,0" VerticalAlignment="Top" Background="#FF01F73D" FontSize="30" FontFamily="Times New Roman" FontWeight="Bold"/>
-        <Button Content="Add Book" HorizontalAlignment="Left" Margin="140,129,0,0" VerticalAlignment="Top" Click="Button_Click" FontSize="30" FontFamily="Times New Roman" FontWeight="Bold" Background="#FF0283F6" Width="160"/>
-        <Button Content="Search Book  " HorizontalAlignment="Left" Margin="140,172,0,0" VerticalAlignment="Top" Click="Button_Click_1" FontSize="30" FontFamily="Times New Roman" FontWeight="Bold" Background="#FF02EBA8" Width="172"/>
-        <Button Content="Delete Book " HorizontalAlignment="Left" Margin="143,217,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Times New Roman" FontWeight="Bold" Background="#FFF64003"/>
+        <ListView 
+                  SelectedIndex="{Binding Book}"
+                  Background="Transparent" Margin="0,46,0,45" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <Button Content="Add Book" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="23,117,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
+        <Button Grid.Column="1" Content="Edit Book" HorizontalAlignment="Left" Margin="94,118,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
+        <Button Grid.Column="1" Content="Delete Book" HorizontalAlignment="Left" Margin="211,117,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
+        <Button Content="Search Book" HorizontalAlignment="Left" Margin="192,0,0,0" VerticalAlignment="Top" Grid.Column="3" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="619" Height="34" Grid.ColumnSpan="4"/>
 
     </Grid>
 </Window>

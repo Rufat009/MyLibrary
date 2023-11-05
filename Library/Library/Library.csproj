@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Books.json" />
     <None Remove="Library 2.jfif" />
     <None Remove="Library.jfif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Books.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

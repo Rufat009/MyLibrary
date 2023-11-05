@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,21 +19,36 @@ namespace Library
     /// <summary>
     /// Interaction logic for Options.xaml
     /// </summary>
-    public partial class Options : Window
+    public partial class Options : Window, INotifyPropertyChanged
     {
         public Options()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        public List<Book> Books
         {
+            get => BookRepo.Show();
+           
+        }
+
+
+        private int book;
+
+        public int Book
+        {
+            get => book ;
+            set => PropertyChange(out book, value);
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
+        public event PropertyChangedEventHandler? PropertyChanged;
 
+        public void PropertyChange<T>(out T field, T value, [CallerMemberName] string propName = "")
+        {
+            field = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
 }
