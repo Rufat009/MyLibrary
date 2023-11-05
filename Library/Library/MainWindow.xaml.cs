@@ -28,16 +28,21 @@ public partial class MainWindow : Window
 
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void ExitButton(object sender, RoutedEventArgs e)
     {
         Close();
     }
 
-    private void Button_Click_1(object sender, RoutedEventArgs e)
+    private void WelcomeButton(object sender, RoutedEventArgs e)
     {
         Options options = new Options();
         options.Show();
-        Hide();
+        Close();
         
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 }

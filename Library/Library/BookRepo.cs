@@ -18,11 +18,12 @@ public static class BookRepo
         return books;
     }
 
-    public static List<Book> Add(Book book)
+    public static List<Book> Add(string title, string author)
     {
-       if (book != null)
+       if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(author))
        {
-            books.Add(book);
+            books.Add(new Book(title,author));
+            
        }
 
        return books;
@@ -49,6 +50,17 @@ public static class BookRepo
             }
         }
         return listBook;
+
+    }
+
+    public static List<Book> Edit(int index, Book book)
+    {
+        if(index >= 0 && index < books.Count -1 && book != null) 
+        {
+            books[index] = book;
+        }
+
+        return books;
 
     }
 
