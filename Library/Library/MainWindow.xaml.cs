@@ -37,5 +37,7 @@ public partial class MainWindow : Window
     {
         Options options = new Options();
         options.Show();
+        Hide();
+        
     }
 }
