@@ -11,14 +11,9 @@ namespace Library;
 
 public static class BookRepo
 {
+    private static List<Book> books = JsonSerializer.Deserialize<List<Book>>(File.ReadAllText("../../../Books.json")) ?? new List<Book>();
 
-    
-    private static List<Book> books = JsonSerializer.Deserialize<List<Book>>(File.ReadAllText("Books.json")) ?? new List<Book>();
-
-    public static List<Book> Show()
-    {
-        return books;
-    }
+    public static List<Book> Show() => books;
 
     public static List<Book> Add(string title, string author)
     {

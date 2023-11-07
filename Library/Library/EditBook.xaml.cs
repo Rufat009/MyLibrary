@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,17 +17,24 @@ using System.Windows.Shapes;
 namespace Library;
 
 /// <summary>
-/// Interaction logic for AddBook.xaml
+/// Interaction logic for EditBook.xaml
 /// </summary>
-public partial class AddBook : Window, INotifyPropertyChanged {
+public partial class EditBook : Window, INotifyPropertyChanged {
+
     public event PropertyChangedEventHandler? PropertyChanged;
     Options optionsWindow;
     ObservableCollection<Book> Books;
-    public AddBook(Options optionsWindow, ObservableCollection<Book> Books) {
+    Book book;
+    int index;
+
+    public EditBook(Options optionsWindow, ObservableCollection<Book> Books, int index, Book book) {
         InitializeComponent();
 
         this.optionsWindow = optionsWindow;
         this.Books = Books;
+        TitleTextBox = book.Title;
+        AuthorTextBox = book.Author;
+        this.index = index;
         DataContext = this;
     }
 
@@ -61,10 +67,13 @@ public partial class AddBook : Window, INotifyPropertyChanged {
         Close();
     }
 
-    private void AddButton(object sender, RoutedEventArgs e) {
+    private void EditButton(object sender, RoutedEventArgs e) {
         if (!string.IsNullOrWhiteSpace(TitleTextBox) && !string.IsNullOrWhiteSpace(AuthorTextBox)) {
-            BookRepo.Add(TitleTextBox, AuthorTextBox);
-            Books.Add(BookRepo.Show().Last());
+            BookRepo.Edit(index, new Book(TitleTextBox, AuthorTextBox));
+            Books.Clear();
+            foreach (Book item in BookRepo.Show()) {
+                Books.Add(item);
+            }
         }
         optionsWindow.Show();
         Close();
@@ -73,4 +82,11 @@ public partial class AddBook : Window, INotifyPropertyChanged {
     private void Window_Closing(object sender, CancelEventArgs e) {
         optionsWindow.Show();
     }
+
+    private void Window_Closing_1(object sender, CancelEventArgs e)
+    {
+
+    }
 }
+
+

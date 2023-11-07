@@ -31,7 +31,8 @@ public partial class MainWindow : Window
     private void ExitButton(object sender, RoutedEventArgs e)
     {
         string json = JsonSerializer.Serialize(BookRepo.Show());
-        File.WriteAllText("Books.json", json);
+        Console.WriteLine(json);
+        File.WriteAllText("../../../Books.json", json);
         Close();
     }
 
@@ -45,6 +46,6 @@ public partial class MainWindow : Window
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
         string json = JsonSerializer.Serialize(BookRepo.Show());
-        File.WriteAllText("Books.json", json);
+        File.WriteAllText("../../../Books.json", json);
     }
 }
