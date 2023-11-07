@@ -22,11 +22,11 @@ public static class BookRepo
 
     public static List<Book> Add(string title, string author)
     {
-       if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(author))
-       {
-            books.Add(new Book(title,author));
+        if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(author))
+        {
+            books.Add(new Book(title, author));
             
-       }
+        }
 
        return books;
     }

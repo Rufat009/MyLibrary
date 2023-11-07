@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
+        Closing="Window_Closing"
         Title="Options" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -20,10 +21,10 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Library 2.jfif"/>
         </Grid.Background>
-        <ListView 
+        <ListView ItemsSource="{Binding Books}" 
                   SelectedIndex="{Binding Book}"
                   Background="Transparent" Margin="0,46,0,45" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
-        <Button Content="Add Book" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="23,117,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
+        <Button Content="Add Book" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="23,117,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25" Click="AddButton"/>
         <Button Grid.Column="1" Content="Edit Book" HorizontalAlignment="Left" Margin="94,118,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
         <Button Grid.Column="1" Content="Delete Book" HorizontalAlignment="Left" Margin="211,117,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>
         <Button Content="Search Book" HorizontalAlignment="Left" Margin="192,0,0,0" VerticalAlignment="Top" Grid.Column="3" FontFamily="Times New Roman" FontWeight="Bold" FontSize="25"/>

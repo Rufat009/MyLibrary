@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,25 +26,25 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-
-
     }
 
     private void ExitButton(object sender, RoutedEventArgs e)
     {
+        string json = JsonSerializer.Serialize(BookRepo.Show());
+        File.WriteAllText("Books.json", json);
         Close();
     }
 
     private void WelcomeButton(object sender, RoutedEventArgs e)
     {
-        Options options = new Options();
+        Options options = new Options(this);
         options.Show();
-        Close();
+        Hide();
         
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
-    {
-
+    private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+        string json = JsonSerializer.Serialize(BookRepo.Show());
+        File.WriteAllText("Books.json", json);
     }
 }
