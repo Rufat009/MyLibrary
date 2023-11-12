@@ -24,7 +24,7 @@ public partial class EditBook : Window, INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
     BooksWindow optionsWindow;
     ObservableCollection<Book> Books;
-    Book book;
+    
     int index;
 
     public EditBook(BooksWindow optionsWindow, ObservableCollection<Book> Books, int index, Book book) {

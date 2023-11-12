@@ -51,7 +51,7 @@ public static class BookRepository
 
     public static List<Book> Edit(int index, Book book)
     {
-        if (index >= 0 && index < books.Count - 1 && book != null)
+        if (index >= 0 && index <= books.Count - 1 && book != null)
         {
             books[index] = book;
         }

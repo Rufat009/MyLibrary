@@ -31,7 +31,6 @@ public partial class MainWindow : Window
     private void ExitButton(object sender, RoutedEventArgs e)
     {
         string json = JsonSerializer.Serialize(BookRepository.Show());
-        Console.WriteLine(json);
         File.WriteAllText("../../../Books.json", json);
         Close();
     }
