@@ -11,8 +11,24 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Library.jfif"/>
         </Grid.Background>
-        <Button  Content="Welcome" HorizontalAlignment="Left" Margin="317,155,0,0" VerticalAlignment="Top" Width="126" Height="41" Background="#FFF70202" FontSize="28" FontFamily="Times New Roman" FontWeight="Bold" RenderTransformOrigin="0.484,-0.18" Click="WelcomeButton"/>
-        <Button Content="Exit" HorizontalAlignment="Left" Margin="317,236,0,0" VerticalAlignment="Top" Width="126" Height="43" Click="ExitButton" Background="#FFF90202" FontSize="28" FontFamily="Times New Roman" FontWeight="Bold"/>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button FontFamily="Times New Roman" FontSize="25" Content="Welcome" Background="Red" Grid.Row="1" Grid.Column="1" Click="WelcomeButton"/>
+        <Button FontFamily="Times New Roman" FontSize="25" Content="Exit" Background="Red" Grid.Row="3" Grid.Column="1" Click="ExitButton"/>
+
 
     </Grid>
 </Window>

@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,20 +17,22 @@ using System.Windows.Shapes;
 namespace Library
 {
     /// <summary>
-    /// Interaction logic for Options.xaml
+    /// Interaction logic for BooksWindow.xaml
     /// </summary>
-    public partial class Options : Window, INotifyPropertyChanged {
+    public partial class BooksWindow : Window, INotifyPropertyChanged
+    {
         public event PropertyChangedEventHandler? PropertyChanged;
         MainWindow mainWindow;
 
-        public Options(MainWindow mainWindow)
+        public BooksWindow(MainWindow mainWindow)
         {
             InitializeComponent();
 
             this.mainWindow = mainWindow;
             DataContext = this;
 
-            foreach (Book item in BookRepo.Show()) {
+            foreach (Book item in BookRepository.Show())
+            {
                 Books.Add(item);
             }
 
@@ -42,7 +40,8 @@ namespace Library
 
         private ObservableCollection<Book> books = new ObservableCollection<Book>();
 
-        public ObservableCollection<Book> Books {
+        public ObservableCollection<Book> Books
+        {
             get { return books; }
             set { books = value; }
         }
@@ -63,9 +62,11 @@ namespace Library
 
         private int bookIndex;
 
-        public int BookIndex {
+        public int BookIndex
+        {
             get => bookIndex;
-            set {
+            set
+            {
                 bookIndex = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BookIndex)));
             }
@@ -75,9 +76,11 @@ namespace Library
 
         private string searchText;
 
-        public string SearchText {
+        public string SearchText
+        {
             get => searchText;
-            set {
+            set
+            {
                 searchText = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchText)));
             }
@@ -85,45 +88,69 @@ namespace Library
         }
 
 
-        private void Window_Closing(object sender, CancelEventArgs e) {
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
             mainWindow.Show();
         }
 
-        private void AddButton(object sender, RoutedEventArgs e) {
+        private void AddButton(object sender, RoutedEventArgs e)
+        {
             new AddBook(this, Books).Show();
             Hide();
         }
 
-        private void EditButton(object sender, RoutedEventArgs e) {
-            new EditBook(this, Books, BookIndex,Book).Show();
-            Hide();
+        private void EditButton(object sender, RoutedEventArgs e)
+        {
+            if (Book != null)
+            {
+                new EditBook(this, Books, BookIndex, Book).Show();
+                Hide();
+            }
         }
 
-        private void DeleteButton(object sender, RoutedEventArgs e) {
-            if (Book != null) {
-                BookRepo.Delete(Book);
+        private void ShowButton(object sender, RoutedEventArgs e)
+        {
+            if (Book != null)
+            {
+                new ShowBook(this, Book).Show();
+                Hide();
+            }
+        }
+
+        private void DeleteButton(object sender, RoutedEventArgs e)
+        {
+            if (Book != null)
+            {
+                BookRepository.Delete(Book);
                 Books.Clear();
-                foreach (Book item in BookRepo.Show()) {
+                foreach (Book item in BookRepository.Show())
+                {
                     Books.Add(item);
                 }
             }
         }
 
-        private void SearchButton(object sender, RoutedEventArgs e) {
+        private void SearchButton(object sender, RoutedEventArgs e)
+        {
 
-            if (SearchText == null) {
+            if (SearchText == null)
+            {
                 return;
             }
 
-            if (SearchText == "") {
+            if (SearchText == "")
+            {
                 Books.Clear();
-                foreach (Book item in BookRepo.Show()) {
+                foreach (Book item in BookRepository.Show())
+                {
                     Books.Add(item);
                 }
             }
-            else {
+            else
+            {
                 Books.Clear();
-                foreach (Book item in BookRepo.Search(SearchText)) {
+                foreach (Book item in BookRepository.Search(SearchText))
+                {
                     Books.Add(item);
                 }
             }

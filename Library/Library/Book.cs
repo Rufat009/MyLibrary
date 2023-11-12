@@ -13,12 +13,14 @@ public class Book
     
     public string Title { get; set; }
     public string Author { get; set; }
+    public string Content { get; set; }
 
 
-    public Book(string title, string author)
+    public Book(string title, string author, string content)
     {
         this.Title = title;    
         this.Author = author;
+        this.Content = content;
     }
 
     public override string ToString()

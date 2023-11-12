@@ -30,7 +30,7 @@ public partial class MainWindow : Window
 
     private void ExitButton(object sender, RoutedEventArgs e)
     {
-        string json = JsonSerializer.Serialize(BookRepo.Show());
+        string json = JsonSerializer.Serialize(BookRepository.Show());
         Console.WriteLine(json);
         File.WriteAllText("../../../Books.json", json);
         Close();
@@ -38,14 +38,14 @@ public partial class MainWindow : Window
 
     private void WelcomeButton(object sender, RoutedEventArgs e)
     {
-        Options options = new Options(this);
+        BooksWindow options = new BooksWindow(this);
         options.Show();
         Hide();
         
     }
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-        string json = JsonSerializer.Serialize(BookRepo.Show());
+        string json = JsonSerializer.Serialize(BookRepository.Show());
         File.WriteAllText("../../../Books.json", json);
     }
 }

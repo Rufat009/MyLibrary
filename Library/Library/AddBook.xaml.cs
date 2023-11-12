@@ -22,12 +22,14 @@ namespace Library;
 /// </summary>
 public partial class AddBook : Window, INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
-    Options optionsWindow;
+
+    BooksWindow booksWindow;
+
     ObservableCollection<Book> Books;
-    public AddBook(Options optionsWindow, ObservableCollection<Book> Books) {
+    public AddBook(BooksWindow booksWindow, ObservableCollection<Book> Books) {
         InitializeComponent();
 
-        this.optionsWindow = optionsWindow;
+        this.booksWindow = booksWindow;
         this.Books = Books;
         DataContext = this;
     }
@@ -45,6 +47,19 @@ public partial class AddBook : Window, INotifyPropertyChanged {
 
     }
 
+    private string contentTextBox;
+
+    public string ContentTextBox
+    {
+        get => contentTextBox;
+        set
+        {
+            contentTextBox = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ContentTextBox)));
+        }
+
+    }
+
     private string authorTextBox;
 
     public string AuthorTextBox {
@@ -57,20 +72,21 @@ public partial class AddBook : Window, INotifyPropertyChanged {
     }
 
     private void BackButton(object sender, RoutedEventArgs e) {
-        optionsWindow.Show();
+        booksWindow.Show();
         Close();
     }
 
     private void AddButton(object sender, RoutedEventArgs e) {
-        if (!string.IsNullOrWhiteSpace(TitleTextBox) && !string.IsNullOrWhiteSpace(AuthorTextBox)) {
-            BookRepo.Add(TitleTextBox, AuthorTextBox);
-            Books.Add(BookRepo.Show().Last());
+        if (!string.IsNullOrWhiteSpace(TitleTextBox) && !string.IsNullOrWhiteSpace(AuthorTextBox) && !string.IsNullOrWhiteSpace(ContentTextBox)) {
+            BookRepository.Add(TitleTextBox, AuthorTextBox, ContentTextBox);
+            Books.Add(BookRepository.Show().Last());
         }
-        optionsWindow.Show();
+        booksWindow.Show();
         Close();
     }
 
     private void Window_Closing(object sender, CancelEventArgs e) {
-        optionsWindow.Show();
+        booksWindow.Show();
     }
+
 }

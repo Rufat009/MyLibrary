@@ -5,25 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Library;
 
-public static class BookRepo
+public static class BookRepository
 {
     private static List<Book> books = JsonSerializer.Deserialize<List<Book>>(File.ReadAllText("../../../Books.json")) ?? new List<Book>();
 
     public static List<Book> Show() => books;
 
-    public static List<Book> Add(string title, string author)
+    public static List<Book> Add(string title, string author, string content)
     {
-        if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(author))
+        if (!string.IsNullOrWhiteSpace(title) && !string.IsNullOrWhiteSpace(author) && !string.IsNullOrWhiteSpace(content))
         {
-            books.Add(new Book(title, author));
-            
+            books.Add(new Book(title, author,content));
+
         }
 
-       return books;
+        return books;
     }
 
 
@@ -32,7 +31,7 @@ public static class BookRepo
         books.Remove(book);
 
         return books;
-          
+
     }
 
     public static List<Book> Search(string title)
@@ -52,7 +51,7 @@ public static class BookRepo
 
     public static List<Book> Edit(int index, Book book)
     {
-        if(index >= 0 && index < books.Count -1 && book != null) 
+        if (index >= 0 && index < books.Count - 1 && book != null)
         {
             books[index] = book;
         }

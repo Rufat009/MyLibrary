@@ -7,27 +7,64 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Title="AddBook" Height="450" Width="800">
-    <StackPanel>
-        <StackPanel.Background>
+    <Grid>
+        <Grid.Background>
             <ImageBrush ImageSource="/Library 2.jfif"/>
-        </StackPanel.Background>
+        </Grid.Background>
 
-        <Button Click="BackButton" Margin="0 0 0 15" FontSize="25" HorizontalAlignment="Left" FontFamily="Times New Roman" Background="DarkRed" Content="Back"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <TextBlock Margin="0 0 0 15" FontSize="30" FontFamily="Times New Roman" Background="DarkRed" Text="Add new book"/>
+        <Button Click="BackButton" FontSize="25" Background="DarkRed" Content="Back" Grid.Row="0" Width="100" HorizontalAlignment="Left"/>
 
-        <StackPanel Margin="0 0 0 10" Orientation="Horizontal">
-            <TextBlock Background="DarkRed" FontSize="25" FontFamily="Times New Roman" Text="Title: "/>
-            <TextBox Text="{Binding TitleTextBox}" FontSize="25" FontFamily="Times New Roman" Width="740"/>
-        </StackPanel>
+        <TextBlock FontSize="25" Background="DarkRed" Text="Add new book" TextAlignment="Center" Grid.Row="2"/>
 
-        <StackPanel Margin="0 0 0 10" Orientation="Horizontal">
-            <TextBlock Background="DarkRed" FontSize="25" FontFamily="Times New Roman" Text="Author: "/>
-            <TextBox Text="{Binding AuthorTextBox}" FontSize="25" FontFamily="Times New Roman" Width="716"/>
-        </StackPanel>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Button Click="AddButton" Margin="0 0 0 15" FontSize="25" FontFamily="Times New Roman" Background="DarkRed" Content="Add"/>
+            <TextBlock FontSize="25" Background="DarkRed" Text="Title" TextAlignment="Center" Grid.Column="0"/>
+            <TextBox Text="{Binding TitleTextBox}" FontSize="25" Grid.Column="1"/>
 
+        </Grid>
 
-    </StackPanel>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock FontSize="25" Background="DarkRed" Text="Author" TextAlignment="Center" Grid.Column="0"/>
+            <TextBox Text="{Binding AuthorTextBox}" FontSize="25" Grid.Column="1"/>
+
+        </Grid>
+
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock FontSize="25" Background="DarkRed" Text="Content" TextAlignment="Center" Grid.Column="0"/>
+            <TextBox Text="{Binding ContentTextBox}" FontSize="25" Grid.Column="1" />
+
+        </Grid>
+
+        <Button Click="AddButton" FontSize="25" Background="DarkRed" Content="Add" Grid.Row="10"/>
+
+    </Grid>
 </Window>

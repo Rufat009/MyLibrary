@@ -17,24 +17,22 @@ using System.Windows.Shapes;
 namespace Library;
 
 /// <summary>
-/// Interaction logic for EditBook.xaml
+/// Interaction logic for ShowBook.xaml
 /// </summary>
-public partial class EditBook : Window, INotifyPropertyChanged {
+public partial class ShowBook : Window, INotifyPropertyChanged
+{
 
     public event PropertyChangedEventHandler? PropertyChanged;
-    BooksWindow optionsWindow;
-    ObservableCollection<Book> Books;
+    BooksWindow booksWindow;
     Book book;
-    int index;
 
-    public EditBook(BooksWindow optionsWindow, ObservableCollection<Book> Books, int index, Book book) {
+    public ShowBook(BooksWindow booksWindow, Book book)
+    {
         InitializeComponent();
 
-        this.optionsWindow = optionsWindow;
-        this.Books = Books;
+        this.booksWindow = booksWindow;
         TitleTextBox = book.Title;
         AuthorTextBox = book.Author;
-        this.index = index;
         ContentTextBox = book.Content;
         DataContext = this;
     }
@@ -56,9 +54,11 @@ public partial class EditBook : Window, INotifyPropertyChanged {
 
     private string titleTextBox;
 
-    public string TitleTextBox {
+    public string TitleTextBox
+    {
         get => titleTextBox;
-        set {
+        set
+        {
             titleTextBox = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TitleTextBox)));
         }
@@ -67,38 +67,29 @@ public partial class EditBook : Window, INotifyPropertyChanged {
 
     private string authorTextBox;
 
-    public string AuthorTextBox {
+    public string AuthorTextBox
+    {
         get => authorTextBox;
-        set {
+        set
+        {
             authorTextBox = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AuthorTextBox)));
         }
 
     }
 
-    private void BackButton(object sender, RoutedEventArgs e) {
-        optionsWindow.Show();
+    private void BackButton(object sender, RoutedEventArgs e)
+    {
+        booksWindow.Show();
         Close();
     }
 
-    private void EditButton(object sender, RoutedEventArgs e) {
-        if (!string.IsNullOrWhiteSpace(TitleTextBox) && !string.IsNullOrWhiteSpace(AuthorTextBox) && !string.IsNullOrWhiteSpace(ContentTextBox)) {
-            BookRepository.Edit(index, new Book(TitleTextBox, AuthorTextBox, ContentTextBox));
-            Books.Clear();
-            foreach (Book item in BookRepository.Show()) {
-                Books.Add(item);
+   
 
-            }
-        }
-        optionsWindow.Show();
-        Close();
+    private void Window_Closing(object sender, CancelEventArgs e)
+    {
+        booksWindow.Show();
     }
 
-    private void Window_Closing(object sender, CancelEventArgs e) {
-        optionsWindow.Show();
-    }
 
-    
 }
-
-

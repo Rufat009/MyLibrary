@@ -1,0 +1,72 @@
+﻿<Window x:Class="Library.BooksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+         Closing="Window_Closing"
+        Title="BooksWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Library 2.jfif"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="3" Grid.Column="1" SelectedIndex="{Binding BookIndex}"
+                  SelectedItem="{Binding Book}"
+                  ItemsSource="{Binding Books}"
+                  Background="Transparent">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="20"
+                               Text="{Binding }" 
+                               Foreground="White"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding SearchText}" Grid.Column="0" Background="White"/>
+            <Button Click="SearchButton" FontSize="25" FontFamily="Times New Roman" Content="Search" Grid.Column="1" HorizontalAlignment="Stretch"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button FontSize="25" FontFamily="Times New Roman" Content="Add" Grid.Column="0" Click="AddButton"/>
+            <Button FontSize="25" FontFamily="Times New Roman" Content="Edit" Grid.Column="2" Click="EditButton"/>
+            <Button FontSize="25" FontFamily="Times New Roman" Content="Delete" Grid.Column="4" Click="DeleteButton"/>
+            <Button FontSize="25" FontFamily="Times New Roman" Content="Show" Grid.Column="6" Click="ShowButton"/>
+
+        </Grid>
+
+    </Grid>
+</Window>
